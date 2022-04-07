@@ -19,16 +19,39 @@ public class HelloController {
     }
 
     @GetMapping("hello-mvc")
-    //    http://localhost:8080/hello-mvc?name= (value)
+    //    http://localhost:8080/hello-mvc?name=(value)
     public String helloMvc(@RequestParam("name") String name, Model model) {
         model.addAttribute("name", name);
         return "hello-template";
     }
 
     @GetMapping("hello-string")
+    //    http://localhost:8080/hello-string?name=(value)
+    //    @ResponseBody + 문자반환
     @ResponseBody
     public String helloString(@RequestParam("name") String name) {
         return "hello " + name; //"hello spring"
     }
 
+    @GetMapping("hello-api")
+    //    http://localhost:8080/hello-api?name=(value)
+    //    @ResponseBody + 객체반환
+    @ResponseBody
+    public Hello helloApi (@RequestParam("name") String name) {
+        Hello hello = new Hello();
+        hello.setName(name);
+        return hello;
+    }
+
+    static class Hello {
+        private String name;
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
 }
