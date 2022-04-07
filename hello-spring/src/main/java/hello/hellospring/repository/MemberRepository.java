@@ -11,7 +11,7 @@ public interface MemberRepository {
     //    Id를 통한 회원 정보 조회
     Optional<Member> findById(Long id);
     //    Id를 통한 회원 정보 조회
-    Optional<Member> findBMember(String name);
+    Optional<Member> findByName(String name);
     //    모든 회원 정보 반환
     List<Member> findAll();
 
